@@ -1,0 +1,26 @@
+.path {
+  fill: grey;
+  stroke: cornsilk;
+  stroke-width: 1px;
+}
+
+.path:hover {
+  cursor: pointer;
+  fill: rgb(117, 174, 240);
+  fill-opacity: 0.5;
+}
+
+.path--stage_one {
+  fill: #ff0000;
+  fill-opacity: 0.9;
+}
+
+.path--stage_two {
+  fill: #ffa500;
+  fill-opacity: 0.9;
+}
+
+.path--stage_three {
+  fill: #228b22;
+  fill-opacity: 0.9;
+}
