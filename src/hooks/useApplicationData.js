@@ -22,7 +22,7 @@ const useApplicationData = () => {
         console.log('data got fetched again');
         dispatch({
           type: SET_DATA,
-          mapData: mapData,
+          mapData: mapData.data,
           stageObj: stageObj.data,
         });
       })
