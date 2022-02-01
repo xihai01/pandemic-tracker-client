@@ -14,3 +14,8 @@
 
 [build.environment]
   REACT_APP_API_BASE_URL = "https://pandemic-tracker-123.herokuapp.com/"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
