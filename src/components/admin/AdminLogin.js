@@ -39,10 +39,7 @@ export default function AdminLogin() {
   function handleChange(e) {
     const { name, value } = e.target;
     setState((prevState) => {
-      return { ...prevState, error: false };
-    });
-    setState((prevState) => {
-      return { ...prevState, [name]: value };
+      return { ...prevState, [name]: value, error: false };
     });
   }
 
@@ -53,7 +50,7 @@ export default function AdminLogin() {
     margin: "100px auto",
   };
   const avatarStyle = { backgroundColor: "#00AB55" };
-  const btnStyle = { 
+  const btnStyle = {
     margin: "8px 0",
     backgroundColor: "#005249" };
 
@@ -130,8 +127,8 @@ export default function AdminLogin() {
           </Typography>
         </Paper>
       </Grid>
-      
-      
+
+
     </Grid>
   );
 }
