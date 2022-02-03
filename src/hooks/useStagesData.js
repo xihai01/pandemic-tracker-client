@@ -11,15 +11,15 @@ export default function useStagesData(){
   })
 
   useEffect(()=>{
-    axios.get(`/admin/stages`)
+    axios.get(`/admin/stages`, { withCredentials: true })
     .then((res)=>{
       dispatch({type: SET_STAGES, stages: res.data});
-  
+
     })
     .catch()
   } ,[]);
 
- 
+
 
   const columns = [
     { title: 'Stage', field: 'id',width: null },
@@ -35,23 +35,23 @@ export default function useStagesData(){
     { title: 'Entertainment', field: 'entertainment',cellStyle: {
       width: 500,
       minWidth: 500
-      
+
     }},
     { title: 'Food establishments', field: 'food_establishments',cellStyle: {
       width: 300,
       minWidth: 300
-      
+
     }},
- 
+
     { title: 'Retail', field: 'retail',cellStyle: {
       width: 300,
       minWidth: 300
-      
+
     }},
     { title: 'Sports/Recreation', field: 'sports_recreational',cellStyle: {
       width: 500,
       minWidth: 500
-      
+
     }},
     { title: 'Created On', field: 'created_at', editable: 'never'},
     { title: 'Last Update', field: 'updated_at',editable: 'never'}
@@ -89,7 +89,7 @@ export default function useStagesData(){
       dispatch({type: SET_STAGES, stages: res2.data});
     })
     .catch(()=> console.log(`error editing data in DB`));
-    
+
   }
 
   function deleteRow(data) {
@@ -99,7 +99,7 @@ export default function useStagesData(){
       dispatch({type: SET_STAGES, stages: res2.data});
     })
     .catch(()=> console.log(`error deleting data in DB`));
-    
+
 
   }
 
@@ -115,7 +115,7 @@ export default function useStagesData(){
       max_outdoor_gathering,
       max_indoor_gathering
     } = data
-    
+
     return Promise.all([axios.post(`/admin/stages`,
     {
       color_code,
@@ -134,7 +134,7 @@ export default function useStagesData(){
       dispatch({type: SET_STAGES, stages: res2.data});
     })
     .catch(()=> console.log(`error creating data in DB`));
-    
+
   }
 
   return {

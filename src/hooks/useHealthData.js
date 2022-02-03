@@ -11,7 +11,7 @@ export default function useHealthData(){
   })
 
   useEffect(()=>{
-    axios.get(`/admin/health_regions`)
+    axios.get(`/admin/health_regions`, { withCredentials: true })
     .then((res)=>{
       dispatch({type: SET_REGIONS, healthRegions: res.data});
     })
@@ -36,7 +36,7 @@ export default function useHealthData(){
       dispatch({type: SET_REGIONS, healthRegions: res2.data});
     })
     .catch(()=> console.log(`error editing data in DB`));
-    
+
   }
 
   function deleteRow(data) {
@@ -46,7 +46,7 @@ export default function useHealthData(){
       dispatch({type: SET_REGIONS, healthRegions: res2.data});
     })
     .catch(()=> console.log(`error editing data in DB`));
-    
+
 
   }
 
@@ -57,7 +57,7 @@ export default function useHealthData(){
       dispatch({type: SET_REGIONS, healthRegions: res2.data});
     })
     .catch(()=> console.log(`error creating data in DB`));
-    
+
   }
 
   return {
