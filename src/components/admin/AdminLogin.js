@@ -21,7 +21,7 @@ export default function AdminLogin() {
   function validate(e) {
     e.preventDefault();
     axios
-      .get(`/admin/login?email=${state.email}&password=${state.password}`)
+      .get(`/admin/login?email=${state.email}&password=${state.password}`, { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
           localStorage.setItem("auth", "true");
