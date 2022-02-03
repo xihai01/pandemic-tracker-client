@@ -81,9 +81,9 @@ export default function AdminBoard({children}){
       return navigate('/admin')
     };
 
-    axios.get('/admin/dashboard')
+    axios.get('/admin/dashboard', { withCredentials: true })
     .then((res)=>{
-      
+
       dispatch({type: SET_DASHBOARD, dashboard: res.data});
     })
     .catch(()=>console.log(`Unable to fecth API data`))
@@ -163,9 +163,9 @@ export default function AdminBoard({children}){
         <List>
           {menuItems.map(item=>{
             return (
-            <ListItem 
-              button  
-              key={item.text} 
+            <ListItem
+              button
+              key={item.text}
               onClick={()=>{navigate(item.path)}}
               className={location.pathname === item.path ? classes.active : null}
             >
@@ -190,7 +190,7 @@ export default function AdminBoard({children}){
             <Typography variant="h6" className={classes.date}>
               Hi,Welcome Back
             </Typography>
-            
+
             <Toolbar>
               {format(new Date(),`do MMMM Y`)}
             </Toolbar>
@@ -203,8 +203,8 @@ export default function AdminBoard({children}){
           </Toolbar>
         </AppBar>
         <div className={classes.toolbar}></div>
-        
-          
+
+
         <Grid container spacing={3} elevation={3} >
           <Grid item xs={12} sm={6} md={3}>
             <CardAdmin state={state} />
@@ -225,7 +225,7 @@ export default function AdminBoard({children}){
           </Grid>
 
         </Grid>
-        
+
         <div className={classes.toolbar}></div>
         <div className={classes.page}>
           {children}
