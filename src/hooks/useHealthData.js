@@ -7,6 +7,8 @@ export default function useHealthData() {
     healthRegions: [],
     loading: true,
     error: null,
+    add: 0,
+    delete: 0,
   });
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function useHealthData() {
       axios.get(`/admin/health_regions`, { withCredentials: true }),
     ])
       .then(([res1, res2]) => {
-        console.log(`data created sucessfully`);
+        console.log(`data created sucessfully`, res2.data);
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
       .catch(() => console.log(`error creating data in DB`));

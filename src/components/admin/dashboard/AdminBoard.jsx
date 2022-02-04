@@ -86,7 +86,7 @@ export default function AdminBoard({children}){
 
       dispatch({type: SET_DASHBOARD, dashboard: res.data});
     })
-    .catch(()=>console.log(`Unable to fecth API data`))
+    .catch(()=>console.log(`Unable to fetch API data`))
 
 
   },[])
