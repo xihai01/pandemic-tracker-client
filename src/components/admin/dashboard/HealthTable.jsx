@@ -16,7 +16,7 @@ function HealthTable() {
   }, []);
 
   return (
-    <AdminBoard>
+    <AdminBoard state={state}>
       <MaterialTable
         title="Public Health Regions (Ontario)"
         columns={columns}
