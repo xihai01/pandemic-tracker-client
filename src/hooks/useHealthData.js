@@ -16,9 +16,7 @@ export default function useHealthData() {
     axios
       .get(`/admin/health_regions`, { withCredentials: true })
       .then((res) => {
-        setHealthData((prevState) => {
-          return [...prevState, res.data];
-        });
+        setHealthData(res.data);
         dispatch({ type: SET_REGIONS, healthRegions: res.data });
       })
       .catch();
