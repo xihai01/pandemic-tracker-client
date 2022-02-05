@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 export default function AdminBoard({ children }, props) {
-  const { updateCards } = props.updateCards;
+  const { updateCards } = props;
   const [state, dispatch] = useReducer(adminReducer, {
     dashboard: [],
     loading: true,
