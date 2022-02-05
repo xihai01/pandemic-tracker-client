@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/adminboard" element={<AdminBoard />} />
+        <Route path="/adminboard" element={<AdminBoard updateCards={true} />} />
         <Route path="/stages" element={<Stages />} />
         <Route path="/regions" element={<HealthTable />} />
 
