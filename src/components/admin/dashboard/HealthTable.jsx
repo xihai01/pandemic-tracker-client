@@ -7,7 +7,15 @@ import MaterialTable from "material-table";
 
 function HealthTable() {
   const navigate = useNavigate();
-  const { state, columns, editRow, deleteRow, addRow } = useHealthData();
+  const {
+    state,
+    columns,
+    editRow,
+    deleteRow,
+    addRow,
+    healthData,
+    setHealthData,
+  } = useHealthData();
 
   useEffect(() => {
     if (!getAuth()) {
@@ -20,7 +28,7 @@ function HealthTable() {
       <MaterialTable
         title="Public Health Regions (Ontario)"
         columns={columns}
-        data={state.healthRegions}
+        data={healthData}
         options={{
           exportButton: true,
           actionsColumnIndex: -1,
@@ -31,8 +39,10 @@ function HealthTable() {
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
               // setTimeout(() => {
-              /* setData([...data, newData]); */
               addRow(newData).then(() => {
+                setHealthData((prevState) => {
+                  return [...healthData, newData];
+                });
                 resolve();
               });
               // }, 1000);
@@ -40,10 +50,11 @@ function HealthTable() {
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               // setTimeout(() => {
-              //     const dataUpdate = [...state];
-              //     const index = oldData.tableData.id;
-              //     dataUpdate[index] = newData;
               editRow(newData).then(() => {
+                const dataUpdate = [...healthData];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setHealthData([...dataUpdate]);
                 // console.log(`newData+++++++++>`,newData);
                 resolve();
               });
@@ -53,11 +64,11 @@ function HealthTable() {
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
               // setTimeout(() => {
-              //     const dataDelete = [...data];
-              //     const index = oldData.tableData.id;
-              //     dataDelete.splice(index, 1);
-              //     setData([...dataDelete]);
               deleteRow(oldData).then(() => {
+                const dataDelete = [...healthData];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setHealthData([...dataDelete]);
                 resolve();
               });
               // }, 1000);
@@ -81,3 +92,68 @@ function HealthTable() {
 }
 
 export default HealthTable;
+
+/* function Editable() {
+  const { useState } = React;
+
+  const [columns, setColumns] = useState([
+    { title: "Name", field: "name" },
+    {
+      title: "Surname",
+      field: "surname",
+      initialEditValue: "initial edit value",
+    },
+    { title: "Birth Year", field: "birthYear", type: "numeric" },
+    {
+      title: "Birth Place",
+      field: "birthCity",
+      lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+    },
+  ]);
+
+  const [data, setData] = useState([
+    { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+    { name: "Zerya Betül", surname: "Baran", birthYear: 2017, birthCity: 34 },
+  ]);
+
+  return (
+    <MaterialTable
+      title="Editable Preview"
+      columns={columns}
+      data={data}
+      editable={{
+        onRowAdd: (newData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              setData([...data, newData]);
+
+              resolve();
+            }, 1000);
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataUpdate = [...data];
+              const index = oldData.tableData.id;
+              dataUpdate[index] = newData;
+              setData([...dataUpdate]);
+
+              resolve();
+            }, 1000);
+          }),
+        onRowDelete: (oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataDelete = [...data];
+              const index = oldData.tableData.id;
+              dataDelete.splice(index, 1);
+              setData([...dataDelete]);
+
+              resolve();
+            }, 1000);
+          }),
+      }}
+    />
+  );
+}
+ */

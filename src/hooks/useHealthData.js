@@ -1,8 +1,9 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import adminReducer, { SET_REGIONS } from "reducer/admin_reducer";
 import axios from "axios";
 
 export default function useHealthData() {
+  const [healthData, setHealthData] = useState([]);
   const [state, dispatch] = useReducer(adminReducer, {
     healthRegions: [],
     loading: true,
@@ -53,6 +54,9 @@ export default function useHealthData() {
     ])
       .then(([res1, res2]) => {
         console.log(`data edited sucessfully`);
+        setHealthData((prevState) => {
+          return [...prevState, res2.data];
+        });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
       .catch(() => console.log(`error editing data in DB`));
@@ -67,6 +71,9 @@ export default function useHealthData() {
     ])
       .then(([res1, res2]) => {
         console.log(`data deleted sucessfully`);
+        setHealthData((prevState) => {
+          return [...prevState, res2.data];
+        });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
       .catch(() => console.log(`error editing data in DB`));
@@ -87,6 +94,9 @@ export default function useHealthData() {
     ])
       .then(([res1, res2]) => {
         console.log(`data created sucessfully`, res2.data);
+        setHealthData((prevState) => {
+          return [...prevState, res2.data];
+        });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
       .catch(() => console.log(`error creating data in DB`));
@@ -98,5 +108,7 @@ export default function useHealthData() {
     editRow,
     addRow,
     deleteRow,
+    healthData,
+    setHealthData,
   };
 }
