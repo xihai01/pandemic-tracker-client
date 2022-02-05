@@ -56,7 +56,7 @@ export default function useHealthData() {
       .then(([res1, res2]) => {
         console.log(`data edited sucessfully`);
         setHealthData((prevState) => {
-          return [...prevState, res2.data];
+          return [...prevState, ...res2.data];
         });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
@@ -73,7 +73,7 @@ export default function useHealthData() {
       .then(([res1, res2]) => {
         console.log(`data deleted sucessfully`);
         setHealthData((prevState) => {
-          return [...prevState, res2.data];
+          return [...prevState, ...res2.data];
         });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
@@ -96,7 +96,7 @@ export default function useHealthData() {
       .then(([res1, res2]) => {
         console.log(`data created sucessfully`, res2.data);
         setHealthData((prevState) => {
-          return [...prevState, res2.data];
+          return [...prevState, ...res2.data];
         });
         dispatch({ type: SET_REGIONS, healthRegions: res2.data });
       })
