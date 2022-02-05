@@ -7,7 +7,7 @@ function Stages() {
   const { state, columns, editRow, addRow, deleteRow } = useStagesData();
 
   return (
-    <AdminBoard state={state}>
+    <AdminBoard updateCards={state.stages}>
       <MaterialTable
         title="Lockdown Stages"
         columns={columns}

@@ -16,7 +16,7 @@ function HealthTable() {
   }, []);
 
   return (
-    <AdminBoard state={state}>
+    <AdminBoard updateCards={state.healthRegions}>
       <MaterialTable
         title="Public Health Regions (Ontario)"
         columns={columns}
